@@ -1,0 +1,2 @@
+ALTER TABLE `hw2`.`groups` 
+CHANGE COLUMN `id` `id` INT NOT NULL AUTO_INCREMENT ;
