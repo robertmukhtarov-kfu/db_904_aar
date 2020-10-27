@@ -1,0 +1,4 @@
+CREATE TABLE `company` (
+  `id` INT UNSIGNED NULL AUTO_INCREMENT,
+  `game_center_id` INT UNSIGNED NULL,
+  PRIMARY KEY (`id`));
