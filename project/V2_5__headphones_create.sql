@@ -1,0 +1,6 @@
+CREATE TABLE `headphones` (
+  `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `accessory_item_id` INT UNSIGNED NOT NULL,
+  `name` VARCHAR(100) NOT NULL,
+  `price` INT UNSIGNED NOT NULL,
+  PRIMARY KEY (`id`));
