@@ -1,0 +1,10 @@
+CREATE TABLE `monitor` (
+  `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `accessory_item_id` INT UNSIGNED NOT NULL,
+  `name` VARCHAR(100) NOT NULL,
+  `price` INT UNSIGNED NOT NULL,
+  `size` INT UNSIGNED NOT NULL,
+  `resolution` VARCHAR(9) NOT NULL,
+  `refresh_rate` INT UNSIGNED NOT NULL,
+  `has_hdr` TINYINT(1) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`));
