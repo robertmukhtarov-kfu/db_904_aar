@@ -1,4 +1,9 @@
-CREATE TABLE `game_center` (
-  `id` INT UNSIGNED NULL AUTO_INCREMENT,
-  `address` VARCHAR(100) NOT NULL,
+CREATE TABLE `admin` (
+  `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(100) NOT NULL,
+  `email` VARCHAR(320) NOT NULL,
+  `phone_number` VARCHAR(15) NOT NULL,
+  `surname` VARCHAR(100) NOT NULL,
+  `salary` DOUBLE UNSIGNED NOT NULL,
+  `game_center_id` INT UNSIGNED NOT NULL,
   PRIMARY KEY (`id`));
