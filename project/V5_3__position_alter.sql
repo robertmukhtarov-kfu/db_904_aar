@@ -1,0 +1,11 @@
+ALTER TABLE `position` 
+ADD CONSTRAINT `fk__position_room_id`
+  FOREIGN KEY (`room_id`)
+  REFERENCES `room` (`id`)
+  ON DELETE CASCADE
+  ON UPDATE CASCADE,
+ADD CONSTRAINT `fk__position_player_id`
+  FOREIGN KEY (`player_id`)
+  REFERENCES `player` (`id`)
+  ON DELETE CASCADE
+  ON UPDATE CASCADE;
