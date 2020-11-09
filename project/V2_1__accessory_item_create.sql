@@ -1,4 +1,4 @@
-CREATE TABLE `accessory_items` (
+CREATE TABLE `accessory_item` (
   `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `accessory_id` INT UNSIGNED NOT NULL,
   `position_id` INT UNSIGNED NOT NULL,
