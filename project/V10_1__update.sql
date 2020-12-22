@@ -130,17 +130,17 @@ COLLATE = utf8mb4_0900_ai_ci;
 CREATE TABLE `platform_has_tariff` (
   `id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `tariff_id` INT(10) UNSIGNED NOT NULL,
-  `platform` INT(10) UNSIGNED NOT NULL,
+  `platform_id` INT(10) UNSIGNED NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_platform_has_tariff_tariff1_idx` (`tariff_id` ASC) VISIBLE,
-  INDEX `fk_platform_has_tariff_platform1_idx` (`platform` ASC) VISIBLE,
+  INDEX `fk_platform_has_tariff_platform1_idx` (`platform_id` ASC) VISIBLE,
   CONSTRAINT `fk_platform_has_tariff_tariff1`
     FOREIGN KEY (`tariff_id`)
     REFERENCES `tariff` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_platform_has_tariff_platform1`
-    FOREIGN KEY (`platform`)
+    FOREIGN KEY (`platform_id`)
     REFERENCES `platform` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
