@@ -14,7 +14,7 @@ ADD COLUMN `headphones_model_id` INT(10) UNSIGNED NOT NULL AFTER `accessory_item
 
 ALTER TABLE `keyboard` 
 ADD COLUMN `keyboard_model_id` INT(10) UNSIGNED NOT NULL AFTER `accessory_item_id`,
-ADD INDEX `fk_keybord_kb_model_id_idx` (`keyboard_model_id` ASC) VISIBLE;
+ADD INDEX `fk_keyboard_kb_model_id_idx` (`keyboard_model_id` ASC) VISIBLE;
 ;
 
 ALTER TABLE `monitor` 
@@ -109,12 +109,12 @@ CREATE TABLE IF NOT EXISTS `gamepad_model` (
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
-CREATE TABLE IF NOT EXISTS `keybord_model` (
+CREATE TABLE IF NOT EXISTS `keyboard_model` (
   `id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `model_id` INT(10) UNSIGNED NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_keybord_model_id_idx` (`model_id` ASC) VISIBLE,
-  CONSTRAINT `fk_keybord_model_id`
+  INDEX `fk_keyboard_model_id_idx` (`model_id` ASC) VISIBLE,
+  CONSTRAINT `fk_keyboard_model_id`
     FOREIGN KEY (`model_id`)
     REFERENCES `model` (`id`)
     ON DELETE NO ACTION
@@ -144,9 +144,9 @@ ADD CONSTRAINT `fk_headphones_hp_model_id`
   ON UPDATE NO ACTION;
 
 ALTER TABLE `keyboard` 
-ADD CONSTRAINT `fk_keybord_kb_model_id`
+ADD CONSTRAINT `fk_keyboard_kb_model_id`
   FOREIGN KEY (`keyboard_model_id`)
-  REFERENCES `keybord_model` (`id`)
+  REFERENCES `keyboard_model` (`id`)
   ON DELETE NO ACTION
   ON UPDATE NO ACTION;
 

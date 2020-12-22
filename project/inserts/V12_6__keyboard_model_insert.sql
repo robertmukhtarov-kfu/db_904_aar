@@ -1,4 +1,4 @@
-INSERT INTO `keybord_model` VALUES ('1','43'),
+INSERT INTO `keyboard_model` VALUES ('1','43'),
 ('2','41'),
 ('3','45'),
 ('4','47'),
