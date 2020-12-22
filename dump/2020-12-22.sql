@@ -42,6 +42,34 @@ INSERT INTO `accessory_item` VALUES (1,1),(2,1),(3,1),(4,1),(5,1),(6,1),(7,1),(8
 UNLOCK TABLES;
 
 --
+-- Table structure for table `accessory_model`
+--
+
+DROP TABLE IF EXISTS `accessory_model`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `accessory_model` (
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) NOT NULL,
+  `cost` int unsigned NOT NULL,
+  `manufacturer_id` int unsigned NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_accessory_model_manufacturer_id_idx` (`manufacturer_id`),
+  CONSTRAINT `fk_accessory_model_manufacturer_id` FOREIGN KEY (`manufacturer_id`) REFERENCES `manufacturer` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `accessory_model`
+--
+
+LOCK TABLES `accessory_model` WRITE;
+/*!40000 ALTER TABLE `accessory_model` DISABLE KEYS */;
+INSERT INTO `accessory_model` VALUES (1,'aut',10418,3),(2,'non',78652,7),(3,'aut',12717,5),(4,'dolorem',85728,6),(5,'voluptas',67163,4),(6,'eveniet',45252,6),(7,'ratione',11184,3),(8,'reprehenderit',19092,4),(9,'et',44319,7),(10,'totam',77760,4),(11,'ut',12149,2),(12,'molestiae',15287,1),(13,'sequi',49855,7),(14,'et',96979,7),(15,'molestiae',55397,5),(16,'dolores',70447,6),(17,'earum',18363,1),(18,'porro',26668,3),(19,'eligendi',15994,3),(20,'maiores',78338,1),(21,'voluptas',10912,6),(22,'iusto',69359,4),(23,'quia',58354,7),(24,'ea',19914,2),(25,'sint',37993,2),(26,'dolore',39784,3),(27,'et',14047,4),(28,'aut',66476,4),(29,'libero',86453,6),(30,'possimus',94333,4),(31,'quidem',48160,4),(32,'quis',64068,6),(33,'saepe',66411,5),(34,'earum',43369,4),(35,'minus',50258,5),(36,'animi',95430,4),(37,'libero',22863,1),(38,'nulla',81538,2),(39,'rerum',40167,6),(40,'laboriosam',40350,7),(41,'excepturi',16670,6),(42,'perspiciatis',5590,6),(43,'magni',44762,6),(44,'veritatis',7778,6),(45,'distinctio',34648,6),(46,'harum',59642,1),(47,'qui',49611,1),(48,'alias',10689,1),(49,'cum',25646,3),(50,'voluptates',69722,5);
+/*!40000 ALTER TABLE `accessory_model` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `address`
 --
 
@@ -114,7 +142,7 @@ CREATE TABLE `booking` (
   PRIMARY KEY (`id`),
   KEY `fk__booking_position_id_idx` (`position_id`),
   KEY `fk_booking_tariff1_idx` (`tariff_id`),
-  KEY `bookimg_index` (`datetime_start`),
+  KEY `booking_index` (`datetime_start`),
   CONSTRAINT `fk__booking_position_id` FOREIGN KEY (`position_id`) REFERENCES `position` (`id`),
   CONSTRAINT `fk_booking_tariff1` FOREIGN KEY (`tariff_id`) REFERENCES `tariff` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=701 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -287,7 +315,7 @@ CREATE TABLE `gamepad_model` (
   `model_id` int unsigned NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_gamepad_model_id_idx` (`model_id`),
-  CONSTRAINT `fk_gamepad_model_id` FOREIGN KEY (`model_id`) REFERENCES `model` (`id`)
+  CONSTRAINT `fk_gamepad_model_id` FOREIGN KEY (`model_id`) REFERENCES `accessory_model` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -342,7 +370,7 @@ CREATE TABLE `headphones_model` (
   `model_id` int unsigned NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_headphones_model_id_idx` (`model_id`),
-  CONSTRAINT `fk_headphones_model_id` FOREIGN KEY (`model_id`) REFERENCES `model` (`id`)
+  CONSTRAINT `fk_headphones_model_id` FOREIGN KEY (`model_id`) REFERENCES `accessory_model` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -369,9 +397,9 @@ CREATE TABLE `keyboard` (
   `keyboard_model_id` int unsigned NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_keyboard_accessory_item_id_idx` (`accessory_item_id`) /*!80000 INVISIBLE */,
-  KEY `fk_keybord_kb_model_id_idx` (`keyboard_model_id`),
+  KEY `fk_keyboard_kb_model_id_idx` (`keyboard_model_id`),
   CONSTRAINT `fk_keyboard_accessory_item_id` FOREIGN KEY (`accessory_item_id`) REFERENCES `accessory_item` (`id`),
-  CONSTRAINT `fk_keybord_kb_model_id` FOREIGN KEY (`keyboard_model_id`) REFERENCES `keybord_model` (`id`)
+  CONSTRAINT `fk_keyboard_kb_model_id` FOREIGN KEY (`keyboard_model_id`) REFERENCES `keyboard_model` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=261 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -386,29 +414,29 @@ INSERT INTO `keyboard` VALUES (1,669,15),(2,761,13),(3,613,4),(4,655,9),(5,617,3
 UNLOCK TABLES;
 
 --
--- Table structure for table `keybord_model`
+-- Table structure for table `keyboard_model`
 --
 
-DROP TABLE IF EXISTS `keybord_model`;
+DROP TABLE IF EXISTS `keyboard_model`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `keybord_model` (
+CREATE TABLE `keyboard_model` (
   `id` int unsigned NOT NULL AUTO_INCREMENT,
   `model_id` int unsigned NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `fk_keybord_model_id_idx` (`model_id`),
-  CONSTRAINT `fk_keybord_model_id` FOREIGN KEY (`model_id`) REFERENCES `model` (`id`)
+  KEY `fk_keyboard_model_id_idx` (`model_id`),
+  CONSTRAINT `fk_keyboard_model_id` FOREIGN KEY (`model_id`) REFERENCES `accessory_model` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `keybord_model`
+-- Dumping data for table `keyboard_model`
 --
 
-LOCK TABLES `keybord_model` WRITE;
-/*!40000 ALTER TABLE `keybord_model` DISABLE KEYS */;
-INSERT INTO `keybord_model` VALUES (2,41),(14,41),(7,42),(10,42),(1,43),(11,43),(12,44),(15,44),(3,45),(8,46),(13,46),(4,47),(5,48),(9,48),(6,49);
-/*!40000 ALTER TABLE `keybord_model` ENABLE KEYS */;
+LOCK TABLES `keyboard_model` WRITE;
+/*!40000 ALTER TABLE `keyboard_model` DISABLE KEYS */;
+INSERT INTO `keyboard_model` VALUES (2,41),(14,41),(7,42),(10,42),(1,43),(11,43),(12,44),(15,44),(3,45),(8,46),(13,46),(4,47),(5,48),(9,48),(6,49);
+/*!40000 ALTER TABLE `keyboard_model` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -433,34 +461,6 @@ LOCK TABLES `manufacturer` WRITE;
 /*!40000 ALTER TABLE `manufacturer` DISABLE KEYS */;
 INSERT INTO `manufacturer` VALUES (1,'MSI'),(2,'NVIDIA'),(3,'AMD'),(4,'ASUS'),(5,'ACER'),(6,'RYZER'),(7,'BLODY');
 /*!40000 ALTER TABLE `manufacturer` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `model`
---
-
-DROP TABLE IF EXISTS `model`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `model` (
-  `id` int unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(100) NOT NULL,
-  `cost` int unsigned NOT NULL,
-  `manufacturer_id` int unsigned NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `fk_model_manufacturer_id_idx` (`manufacturer_id`),
-  CONSTRAINT `fk_model_manufacturer_id` FOREIGN KEY (`manufacturer_id`) REFERENCES `manufacturer` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `model`
---
-
-LOCK TABLES `model` WRITE;
-/*!40000 ALTER TABLE `model` DISABLE KEYS */;
-INSERT INTO `model` VALUES (1,'aut',10418,3),(2,'non',78652,7),(3,'aut',12717,5),(4,'dolorem',85728,6),(5,'voluptas',67163,4),(6,'eveniet',45252,6),(7,'ratione',11184,3),(8,'reprehenderit',19092,4),(9,'et',44319,7),(10,'totam',77760,4),(11,'ut',12149,2),(12,'molestiae',15287,1),(13,'sequi',49855,7),(14,'et',96979,7),(15,'molestiae',55397,5),(16,'dolores',70447,6),(17,'earum',18363,1),(18,'porro',26668,3),(19,'eligendi',15994,3),(20,'maiores',78338,1),(21,'voluptas',10912,6),(22,'iusto',69359,4),(23,'quia',58354,7),(24,'ea',19914,2),(25,'sint',37993,2),(26,'dolore',39784,3),(27,'et',14047,4),(28,'aut',66476,4),(29,'libero',86453,6),(30,'possimus',94333,4),(31,'quidem',48160,4),(32,'quis',64068,6),(33,'saepe',66411,5),(34,'earum',43369,4),(35,'minus',50258,5),(36,'animi',95430,4),(37,'libero',22863,1),(38,'nulla',81538,2),(39,'rerum',40167,6),(40,'laboriosam',40350,7),(41,'excepturi',16670,6),(42,'perspiciatis',5590,6),(43,'magni',44762,6),(44,'veritatis',7778,6),(45,'distinctio',34648,6),(46,'harum',59642,1),(47,'qui',49611,1),(48,'alias',10689,1),(49,'cum',25646,3),(50,'voluptates',69722,5);
-/*!40000 ALTER TABLE `model` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -506,7 +506,7 @@ CREATE TABLE `monitor_model` (
   `model_id` int unsigned NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_monitor_model_id_idx` (`model_id`),
-  CONSTRAINT `fk_monitor_model_id` FOREIGN KEY (`model_id`) REFERENCES `model` (`id`)
+  CONSTRAINT `fk_monitor_model_id` FOREIGN KEY (`model_id`) REFERENCES `accessory_model` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -562,7 +562,7 @@ CREATE TABLE `mouse_model` (
   `model_id` int unsigned NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_mouse_model_id_idx` (`model_id`),
-  CONSTRAINT `fk_mouse_model_id` FOREIGN KEY (`model_id`) REFERENCES `model` (`id`)
+  CONSTRAINT `fk_mouse_model_id` FOREIGN KEY (`model_id`) REFERENCES `accessory_model` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -870,4 +870,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-12-22 19:13:55
+-- Dump completed on 2020-12-22 20:18:30
