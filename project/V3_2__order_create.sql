@@ -6,4 +6,4 @@ CREATE TABLE `order` (
   `tariff_id` INT UNSIGNED NOT NULL,
   `discount_id` INT UNSIGNED NULL,
   PRIMARY KEY (`id`),
-  UNIQUE INDEX `player_id_UNIQUE` (`player_id` ASC) VISIBLE);
+  INDEX `player_id_UNIQUE` (`player_id` ASC) VISIBLE);

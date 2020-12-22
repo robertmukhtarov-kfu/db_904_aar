@@ -2,5 +2,5 @@ CREATE TABLE `accessory_item` (
   `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `accessory_id` INT UNSIGNED NOT NULL,
   `position_id` INT UNSIGNED NOT NULL,
-  `condition` TINYINT(1) NULL DEFAULT NULL,
+  `condition` TINYINT(1) UNSIGNED NOT NULL DEFAULT 1,
   PRIMARY KEY (`id`));

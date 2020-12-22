@@ -163,3 +163,10 @@ ADD CONSTRAINT `fk_mouse_mouse_model_id`
   REFERENCES `mouse_model` (`id`)
   ON DELETE NO ACTION
   ON UPDATE NO ACTION;
+  
+ALTER TABLE `accessory_item`
+    DROP COLUMN `name`;
+    
+ALTER TABLE `tariff`
+    DROP COLUMN `room_id`;
+    
