@@ -39,14 +39,14 @@ CREATE TABLE IF NOT EXISTS `manufacturer` (
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
-CREATE TABLE IF NOT EXISTS `model` (
+CREATE TABLE IF NOT EXISTS `accessory_model` (
   `id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(100) NOT NULL,
   `cost` INT(10) UNSIGNED NOT NULL,
   `manufacturer_id` INT(10) UNSIGNED NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_model_manufacturer_id_idx` (`manufacturer_id` ASC) VISIBLE,
-  CONSTRAINT `fk_model_manufacturer_id`
+  INDEX `fk_accessory_model_manufacturer_id_idx` (`manufacturer_id` ASC) VISIBLE,
+  CONSTRAINT `fk_accessory_model_manufacturer_id`
     FOREIGN KEY (`manufacturer_id`)
     REFERENCES `manufacturer` (`id`)
     ON DELETE NO ACTION
@@ -63,7 +63,7 @@ CREATE TABLE IF NOT EXISTS `monitor_model` (
   INDEX `fk_monitor_model_id_idx` (`model_id` ASC) VISIBLE,
   CONSTRAINT `fk_monitor_model_id`
     FOREIGN KEY (`model_id`)
-    REFERENCES `model` (`id`)
+    REFERENCES `accessory_model` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
@@ -77,7 +77,7 @@ CREATE TABLE IF NOT EXISTS `mouse_model` (
   INDEX `fk_mouse_model_id_idx` (`model_id` ASC) VISIBLE,
   CONSTRAINT `fk_mouse_model_id`
     FOREIGN KEY (`model_id`)
-    REFERENCES `model` (`id`)
+    REFERENCES `accessory_model` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
@@ -90,7 +90,7 @@ CREATE TABLE IF NOT EXISTS `headphones_model` (
   INDEX `fk_headphones_model_id_idx` (`model_id` ASC) VISIBLE,
   CONSTRAINT `fk_headphones_model_id`
     FOREIGN KEY (`model_id`)
-    REFERENCES `model` (`id`)
+    REFERENCES `accessory_model` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
@@ -103,7 +103,7 @@ CREATE TABLE IF NOT EXISTS `gamepad_model` (
   INDEX `fk_gamepad_model_id_idx` (`model_id` ASC) VISIBLE,
   CONSTRAINT `fk_gamepad_model_id`
     FOREIGN KEY (`model_id`)
-    REFERENCES `model` (`id`)
+    REFERENCES `accessory_model` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
@@ -116,7 +116,7 @@ CREATE TABLE IF NOT EXISTS `keyboard_model` (
   INDEX `fk_keyboard_model_id_idx` (`model_id` ASC) VISIBLE,
   CONSTRAINT `fk_keyboard_model_id`
     FOREIGN KEY (`model_id`)
-    REFERENCES `model` (`id`)
+    REFERENCES `accessory_model` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
