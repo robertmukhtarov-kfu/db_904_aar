@@ -27,3 +27,33 @@ JOIN position as po on po.room_id=r.id
 JOIN booking as b on b.position_id=po.id
 GROUP by gc.id
 ORDER BY count_of_bookings DESC
+
+-- Имя ,номер телефона и email админов из комнат в которых играл второй игрок
+SELECT pe.name, pe.surname, pe.email, pe.phone_number 
+FROM `order` AS o
+JOIN booking AS b on o.booking_id=b.id
+JOIN position as po on b.position_id=po.id
+JOIN room as r on po.room_id=r.id
+JOIN admin as a on r.admin_id=a.id
+JOIN person as pe on a.person_id=pe.id
+WHERE o.player_id = 2
+GROUP by a.id
+
+--Общий доход за все время
+SELECT SUM(t.cost) AS income 
+FROM booking AS b
+JOIN tariff AS t on b.tariff_id=t.id
+
+-- Доход каждого гейм центра с 2000 по 2020 год
+SELECT a.city, a.street,a.house, SUM(t.cost) AS income 
+FROM booking AS b
+JOIN tariff AS t on b.tariff_id=t.id
+JOIN position as po on b.position_id=po.id
+JOIN room as r on po.room_id=r.id
+JOIN game_center as gc on r.game_center_id=gc.id
+JOIN address as a on gc.address_id=a.id
+WHERE b.datetime_start BETWEEN '2000-01-01' AND '2020-12-31'
+GROUP by gc.id
+ORDER BY income DESC
+
+
