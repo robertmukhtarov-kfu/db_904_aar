@@ -54,9 +54,7 @@ ORDER BY income DESC
 
 -- Адресс работы каждого админа
 SELECT pe.name, pe.surname, pe.email, pe.phone_number , a.city, a.street, a.house
-FROM booking AS b
-JOIN position as po on b.position_id=po.id
-JOIN room as r on po.room_id=r.id
+FROM room as r 
 JOIN admin as ad on r.admin_id=ad.id
 JOIN person as pe on ad.person_id=pe.id
 JOIN game_center as gc on r.game_center_id=gc.id
